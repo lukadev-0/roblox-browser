@@ -1,0 +1,32 @@
+{
+  "name": "browser",
+  "emitLegacyScripts": false,
+  "tree": {
+    "$className": "DataModel",
+    "Workspace": {
+      "Baseplate": {
+        "$path": "roblox/assets/Baseplate.rbxm"
+      },
+      "Screen": {
+        "$path": "roblox/assets/Screen.rbxm"
+      },
+      "SpawnLocation": {
+        "$path": "roblox/assets/SpawnLocation.rbxm"
+      }
+    },
+    "Lighting": {
+      "$path": "roblox/assets/Lighting.model.json"
+    },
+    "ReplicatedStorage": {
+      "$path": "roblox/src/shared"
+    },
+    "ServerScriptService": {
+      "$path": "roblox/src/server"
+    },
+    "HttpService": {
+      "$properties": {
+        "HttpEnabled": true
+      }
+    }
+  }
+}

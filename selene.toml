@@ -1,0 +1,4 @@
+std = "luau+roblox"
+
+[lints]
+shadowing = "allow"
