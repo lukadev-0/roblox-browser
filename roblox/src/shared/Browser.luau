@@ -88,11 +88,11 @@ function Browser.new(viewportContainer: Instance): Browser
 				self.height = command.height
 
 				if not self._editableImages[1] then
-					self._editableImages[1] = Instance.new("EditableImage")
-					self._editableImages[1].Parent = self._images[1]
+					self._editableImages[1] = AssetService:CreateEditableImage({
+						Size = Vector2.new(self.width, self.height),
+					})
+					self._images[1].ImageContent = Content.fromObject(self._editableImages[1])
 				end
-
-				self._editableImages[1].Size = Vector2.new(self.width, self.height)
 
 				self._aspectRatioConstraint.AspectRatio = self.width / self.height
 				self._ready = true
@@ -106,22 +106,10 @@ function Browser.new(viewportContainer: Instance): Browser
 
 				local len = chunkWidth * chunkHeight * 4
 
-				for i = 0, len - 1, 4 do
-					local pixel = buffer.readu32(command.data, i)
-					pixels[i + 1] = bit32.band(pixel, 0x000000FF) / 255
-					pixels[i + 2] = bit32.rshift(bit32.band(pixel, 0x0000FF00), 8) / 255
-					pixels[i + 3] = bit32.rshift(bit32.band(pixel, 0x00FF0000), 16) / 255
-					pixels[i + 4] = bit32.rshift(bit32.band(pixel, 0xFF000000), 24) / 255
-				end
-
-				for i = len + 1, pixelsLen do
-					pixels[i] = nil
-				end
-
-				self._editableImages[1]:WritePixels(
+				self._editableImages[1]:WritePixelsBuffer(
 					Vector2.new(offsetX, offsetY),
 					Vector2.new(chunkWidth, chunkHeight),
-					pixels
+					command.data
 				)
 			end
 		end
