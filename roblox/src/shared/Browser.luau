@@ -1,6 +1,7 @@
 --!native
 --!optimize 2
 
+local AssetService = game:GetService("AssetService")
 local GuiService = game:GetService("GuiService")
 
 local Stream = require(script.Parent.Stream)
